@@ -14,7 +14,7 @@ t = TBot2(TOKEN)
 
 @t.contains('apple')
 def my_handler(req):
-    print('inside my handler', req)
+    return f"{req.text} pie"
 
 
 t.ListenAndServe()

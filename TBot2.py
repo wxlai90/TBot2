@@ -52,7 +52,23 @@ class TBot2:
         for update in updates:
             if update.text in self.routes['contains']:
                 fn = self.routes['contains'][update.text]
-                fn(update)
+                resp = fn(update)
+                if resp:
+                    logging.debug("sendMessage success: " + str(self.sendMessage(resp, update.message.chat.id)))
+
+
+    def sendMessage(self, reply: str, chat_id: str) -> bool:
+        url = self.BASE_URL + 'sendMessage'
+
+        data = {
+            "text": reply,
+            "chat_id": chat_id
+        }
+
+        r = requests.post(url, data = data)
+
+        return r.status_code == 200
+
 
     def markUpdateAsHandled(self, current_update_id: int):
         # TODO: to implement, add offset to current update id, and call update
