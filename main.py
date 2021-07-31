@@ -14,7 +14,12 @@ t = TBot2(TOKEN)
 
 @t.contains('apple')
 def my_handler(req):
-    return f"{req.text} pie"
+    return f"I love apple pies"
+
+
+@t.catch_all()
+def catch_all_handler(req):
+    return "Sorry, I don't understand you."
 
 
 t.ListenAndServe()
