@@ -1,3 +1,4 @@
+from services.api import Api
 from models.update import Update
 from typing import Callable, List
 import requests
@@ -15,6 +16,7 @@ class TBot2:
         self.BASE_URL = f'https://api.telegram.org/bot{token}/'
         self.routes = {}
         self.lastUpdateId = None
+        self.api = Api()
 
     def __addToRoutes(self, type: str, keyword: str, callbackFn: Callable) -> bool:
         if type not in self.routes:
